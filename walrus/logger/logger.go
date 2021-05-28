@@ -75,38 +75,46 @@ func initLogger() {
 	var logPath string = "walrus/logger/config.json"
 	logC, err := loadConfigLogger(logPath)
 
-	fileLog, _ := os.OpenFile(logC.FileTextPath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0755)
-	fileJson, _:= os.OpenFile(logC.FileJSONPath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0755)
+	// fileLog, _ := os.OpenFile(logC.FileTextPath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0755)
+	// fileJson, _:= os.OpenFile(logC.FileJSONPath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0755)
 
 	if err != nil {
 		panic(err)
 	}
 
 	if logC.JSON {
+		log.Formatter = new(logrus.JSONFormatter)
 		// faz o set do formato para json
-		log.SetFormatter(&logrus.JSONFormatter{})
-
+		//log.SetFormatter(&logrus.JSONFormatter{})
 		// Faz o output para o arquivo json
-		logrus.SetOutput(fileJson)
+		//log.Out = fileJson // TODO ver como gravar em dois arquivos diferentes utilizando uma única instância
+		// logrus.SetOutput(fileJson)
 	}
 
 	// Log as TEXT instead of the default ASCII formatter.
-	log.SetFormatter(&logrus.TextFormatter{
-		FullTimestamp: true,
-	})
-
+	log.Formatter = new(logrus.TextFormatter)
+	// TODO parte de configuração
+	// log.Formatter.(*logrus.TextFormatter).DisableColors = true    // remove colors
+	// log.Formatter.(*logrus.TextFormatter).DisableTimestamp = true // remove timestamp from test output
+	// log.SetFormatter(&logrus.TextFormatter{
+	//	FullTimestamp: true,
+	//})
+	log.Out = os.Stdout
 	// Faz o output para o arquivo de logs
-	logrus.SetOutput(fileLog)
-	logrus.SetOutput(os.Stdout)
+	logrus.SetOutput(log.Out)
+	// logrus.SetOutput(os.Stdout) // com Stdout
 
 	// Only logger the warning severity or above.
 	switch logC.Level {
 	case "E_PRODUCTION":
-		log.SetLevel(logrus.InfoLevel)
+		log.Level = logrus.InfoLevel
+		// log.SetLevel(logrus.InfoLevel)
 	case "E_DEVEL":
-		log.SetLevel(logrus.DebugLevel)
+		log.Level = logrus.DebugLevel
+		// log.SetLevel(logrus.DebugLevel)
 	default:
-		log.SetLevel(logrus.TraceLevel)
+		log.Level = logrus.TraceLevel
+		// log.SetLevel(logrus.TraceLevel)
 	}
 }
 

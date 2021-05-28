@@ -1,1 +1,5 @@
-
+{"field":"Debug","field2":10,"level":"debug","msg":"Eu logo esse exemplo de debug","time":"2021-05-28T17:35:55-03:00"}
+{"field":"Trace","field2":10,"level":"trace","msg":"Eu logo esse exemplo de trace","time":"2021-05-28T17:35:55-03:00"}
+{"field":"Info","field2":10,"level":"info","msg":"Eu logo esse exemplo de info","time":"2021-05-28T17:35:55-03:00"}
+{"field":"Warn","field2":10,"level":"warning","msg":"Eu logo esse exemplo de warn","time":"2021-05-28T17:35:55-03:00"}
+{"field":"Error","field2":10,"level":"error","msg":"Eu logo esse exemplo de error","time":"2021-05-28T17:35:55-03:00"}

@@ -1,1 +1,20 @@
-time="2021-05-28T16:40:47-03:00" level=debug msg="Eu logo esse exemplo aqui" field=test field2=10
+time="2021-05-28T17:21:08-03:00" level=debug msg="Eu logo esse exemplo de debug" field=Debug field2=10
+time="2021-05-28T17:21:08-03:00" level=trace msg="Eu logo esse exemplo de trace" field=Trace field2=10
+time="2021-05-28T17:21:08-03:00" level=info msg="Eu logo esse exemplo de info" field=Info field2=10
+time="2021-05-28T17:21:08-03:00" level=warning msg="Eu logo esse exemplo de warn" field=Warn field2=10
+time="2021-05-28T17:21:08-03:00" level=error msg="Eu logo esse exemplo de error" field=Error field2=10
+time="2021-05-28T17:23:19-03:00" level=debug msg="Eu logo esse exemplo de debug" field=Debug field2=10
+time="2021-05-28T17:23:19-03:00" level=trace msg="Eu logo esse exemplo de trace" field=Trace field2=10
+time="2021-05-28T17:23:19-03:00" level=info msg="Eu logo esse exemplo de info" field=Info field2=10
+time="2021-05-28T17:23:19-03:00" level=warning msg="Eu logo esse exemplo de warn" field=Warn field2=10
+time="2021-05-28T17:23:19-03:00" level=error msg="Eu logo esse exemplo de error" field=Error field2=10
+time="2021-05-28T17:27:13-03:00" level=debug msg="Eu logo esse exemplo de debug" field=Debug field2=10
+time="2021-05-28T17:27:13-03:00" level=trace msg="Eu logo esse exemplo de trace" field=Trace field2=10
+time="2021-05-28T17:27:13-03:00" level=info msg="Eu logo esse exemplo de info" field=Info field2=10
+time="2021-05-28T17:27:13-03:00" level=warning msg="Eu logo esse exemplo de warn" field=Warn field2=10
+time="2021-05-28T17:27:13-03:00" level=error msg="Eu logo esse exemplo de error" field=Error field2=10
+time="2021-05-28T17:45:24-03:00" level=debug msg="Eu logo esse exemplo de debug" field=Debug field2=10
+time="2021-05-28T17:45:24-03:00" level=trace msg="Eu logo esse exemplo de trace" field=Trace field2=10
+time="2021-05-28T17:45:24-03:00" level=info msg="Eu logo esse exemplo de info" field=Info field2=10
+time="2021-05-28T17:45:24-03:00" level=warning msg="Eu logo esse exemplo de warn" field=Warn field2=10
+time="2021-05-28T17:45:24-03:00" level=error msg="Eu logo esse exemplo de error" field=Error field2=10
