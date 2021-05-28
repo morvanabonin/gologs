@@ -1,0 +1,7 @@
+{
+  "fileTextPath":"./test.log",
+  "fileJsonPath":"./test.json",
+  "json":true,
+  "level":"E_ALL",
+  "environment":"development"
+}
