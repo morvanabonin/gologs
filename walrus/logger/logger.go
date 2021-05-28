@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/sirupsen/logrus"
-	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -22,7 +21,9 @@ type (
 	}
 )
 
-var log = logrus.New()
+var (
+	log = logrus.New()
+)
 
 func init() {
 	initLogger()
@@ -41,7 +42,7 @@ func loadConfigLogger(path string) (*LogT, error) {
 	f, err := os.Open(path)
 
 	if err != nil {
-		panic(err)
+		panic(err.Error())
 	}
 
 	defer f.Close()
@@ -60,32 +61,22 @@ func loadConfigLogger(path string) (*LogT, error) {
 	return l, nil
 }
 
-func fileWriter(f string) io.Writer {
-	file, err := os.Open(f)
-
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	fileWriter := bufio.NewWriter(file)
-
-	return fileWriter
-}
-
 // set do path de arquivo dos logs
 // escrever no arquivo
 // set do level
-// set true ou false para o tipo de logs, se terá json além dos logs
+// set true ou false para o tipo de logs, se terá arquivo em formato json além dos logs
 func initLogger() {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Println("Panic Recuperado  na função", r)
+			fmt.Println("Panic Recuperado na função", r)
 		}
 	}()
 
-	var logPath string = "./logger_config.json"
+	var logPath string = "walrus/logger/config.json"
 	logC, err := loadConfigLogger(logPath)
+
+	fileLog, _ := os.OpenFile(logC.FileTextPath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0755)
+	fileJson, _:= os.OpenFile(logC.FileJSONPath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0755)
 
 	if err != nil {
 		panic(err)
@@ -96,7 +87,7 @@ func initLogger() {
 		log.SetFormatter(&logrus.JSONFormatter{})
 
 		// Faz o output para o arquivo json
-		log.SetOutput(fileWriter(logC.FileJSONPath))
+		logrus.SetOutput(fileJson)
 	}
 
 	// Log as TEXT instead of the default ASCII formatter.
@@ -105,36 +96,51 @@ func initLogger() {
 	})
 
 	// Faz o output para o arquivo de logs
-	log.SetOutput(fileWriter(logC.FileTextPath))
+	logrus.SetOutput(fileLog)
+	logrus.SetOutput(os.Stdout)
 
 	// Only logger the warning severity or above.
 	switch logC.Level {
 	case "E_PRODUCTION":
 		log.SetLevel(logrus.InfoLevel)
 	case "E_DEVEL":
-		log.SetLevel(logrus.TraceLevel)
-	default:
 		log.SetLevel(logrus.DebugLevel)
+	default:
+		log.SetLevel(logrus.TraceLevel)
 	}
 }
 
 func Trace(msg string) {
 	log.WithFields(logrus.Fields{
-		"field":  "test",
+		"field":  "Trace",
 		"field2": 10,
 	}).Trace(msg)
 }
 
 func Debug(msg string) {
 	log.WithFields(logrus.Fields{
-		"field":  "test",
+		"field":  "Debug",
 		"field2": 10,
 	}).Debug(msg)
 }
 
 func Info(msg string) {
 	log.WithFields(logrus.Fields{
-		"field":  "test",
+		"field":  "Info",
 		"field2": 10,
 	}).Info(msg)
+}
+
+func Warn(msg string) {
+	log.WithFields(logrus.Fields{
+		"field":  "Warn",
+		"field2": 10,
+	}).Warn(msg)
+}
+
+func Error(msg string) {
+	log.WithFields(logrus.Fields{
+		"field":  "Error",
+		"field2": 10,
+	}).Error(msg)
 }

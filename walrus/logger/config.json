@@ -1,6 +1,6 @@
 {
-  "fileTextPath":"./test.log",
-  "fileJsonPath":"./test.json",
+  "fileTextPath":"./walrus/log/test.log",
+  "fileJsonPath":"./walrus/log/test.json",
   "json":true,
   "level":"E_ALL",
   "environment":"development"
