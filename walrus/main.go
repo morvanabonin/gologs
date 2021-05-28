@@ -1,6 +1,8 @@
 package walrus
 
-import "github.com/morvanabonin/app/app"
+import (
+	"github.com/morvanabonin/gologs/walrus/logger"
+)
 
 func main()  {
 	// logs
