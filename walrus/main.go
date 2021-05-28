@@ -1,4 +1,4 @@
-package walrus
+package main
 
 import (
 	"github.com/morvanabonin/gologs/walrus/logger"
